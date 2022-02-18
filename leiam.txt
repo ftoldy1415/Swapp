@@ -1,0 +1,14 @@
+-> frontend básica
+-> colocar pedidos de mudança de turnos
+-> construir e popular a bd
+-> guardar os pedidos numa base de dados
+-> mudança básica de turnos e eliminar os pedidos da base de dados
+
+---------------------------------------------------------------------
+
+->
+->
+->
+
+
+
