@@ -1,0 +1,203 @@
+body{
+  background-color: black;
+  text-align: center;
+
+}
+.textwhite{
+  background-color: white;
+}
+button{
+  margin-top: 20px;
+  width: 100px;
+  background-color: white;
+  border: none;
+  padding: 10px 10px 10px 10px;
+  margin-left: 10px;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover{
+  color: black;
+}
+
+.inputs{
+  padding-top: 15%;
+
+}
+.logoLogin{
+  width:300px;
+}
+
+.caixasTextoWhite{
+  background-color: white;
+  padding : 10px;
+  margin : 5px;
+  width: 250px;
+}
+
+
+
+:root {
+  --main-color: #222831; /* bg color */
+  --second-color: #393E46; /* 2nd bg color */
+  --third-color: #00ADB5; /* rest */
+  --fourth-color: #EEEEEE; /* text color */
+  --green: #00FF00;
+  --red: #FF0000;
+  --green: #FFFF00;
+
+  --table-even-row-color: var(--main-color);
+}
+
+*{
+  font-size: 18px;
+  margin:0;
+  padding:0;
+  font-family: "poppins", "sans-serif";
+  box-sizing: "border-box";
+  /* background-color: var(--main-color); */
+}
+
+body{
+  background-color: var(--second-color);
+}
+
+hr {
+  width: 4%;
+  /*
+  border-style: dotted none none none;
+  border-width: 5px;
+  */
+  border-color: var(--third-color);
+  border: dotted var(--third-color) 6px;
+  border-bottom: none;
+  margin: 80px auto;
+}
+
+.header{
+  /* height: 15vh; */
+  width: 100%;
+  /* padding: 0 8%; */
+  background: var(--third-color);
+  position: relative;
+}
+
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--main-color);
+  padding: 0 8%;
+}
+
+.logo{
+  width:140px;
+}
+
+.nav-links{
+  padding: 28px 0;
+}
+
+.nav-links li{
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.nav-links li a{
+  text-decoration: none;
+  color: var(--fourth-color);
+  padding: 5px 0;
+  position: relative;
+}
+
+.nav-links li a::after{
+  content: '';
+  background: var(--third-color);
+  width: 0;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: width 0.5s;
+}
+
+.nav-links li a:hover::after{
+  width: 100%;
+}
+
+.log-out{
+  background: var(--third-color);
+  color: var(--fourth-color);
+  padding: 10px 30px;
+  border-radius: 3;
+  cursor:pointer;
+}
+
+.content{
+  display:grid;
+  justify-content: center;
+  align-items: center;
+  /*color: var(--third-color); */
+  /*background-color: var(--second-color); */
+}
+
+table{
+  border-collapse: collapse;
+  box-shadow: 0 5px 10px var(--third-color);
+  color: var(--fourth-color);
+  background-color: var(--second-color);
+  text-align: left;
+  overflow: hidden;
+}
+
+/* isto tudo dentro da tabela?? */
+
+table thead{
+  box-shadow: 0 5px 10px var(--third-color);
+}
+
+table th{
+  padding:1rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+table td{
+  padding:1rem 2rem;
+}
+
+table a{
+  text-decoration: none;
+  color: var(--third-color);
+}
+
+table .status{
+  color: black;
+  border-radius: 0.2rem;
+  /* background-color:var(--red); */
+  padding: 0.2rem 1rem;
+  text-align: center;
+}
+
+table .status-unmatched{
+  background-color: var(--red);
+  /* color: var(--fourth-color); */
+}
+
+table .status-pending{
+  background-color: var(--yellow);
+  /* color: var(--fourth-color); */
+}
+
+table .status-enrolled{
+  background-color: var(--green);
+  /* color: var(--fourth-color); */
+}
+
+table tr:nth-child(even){
+  background-color: var(--table-even-row-color);
+}
