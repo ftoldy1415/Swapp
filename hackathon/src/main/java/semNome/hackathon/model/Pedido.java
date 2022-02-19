@@ -78,4 +78,12 @@ public class Pedido {
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
+
+    public String getUc() {
+        return uc;
+    }
+
+    public void setUc(String uc) {
+        this.uc = uc;
+    }
 }
