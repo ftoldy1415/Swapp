@@ -37,10 +37,12 @@ public class AppController {
         return null;
     }
 
+    @CrossOrigin
     @PostMapping("/login")
     public String login(@RequestBody Map<String, String> cred){
         boolean res = appService.login(cred.get("email"), cred.get("password"));
-        return "\"login\" : \"" + res + "\"";
+        System.out.println("{\"login\" : \"" + res + "\"}");
+        return "{\"login\" : \"" + res + "\"}";
     }
 
     @PostMapping("/criarAluno")
@@ -48,7 +50,7 @@ public class AppController {
         this.appService.criarAluno(aluno);
     }
 
-    @PostMapping("/criaTurno")
+    @PostMapping("/criarTurno")
     public void criaTurno(@RequestBody Turno turno){
         appService.criaTurno(turno);
     }
@@ -58,7 +60,7 @@ public class AppController {
         appService.inscreveEmTurno(turno.get("uc"), Integer.parseInt(turno.get("num_turno")));
     }
 
-    @GetMapping("/getTurno")
+    @GetMapping("/getTurnos")
     public List<Turno> obtemTodosTurnos(){
         return appService.obtemTodosTurnos();
     }

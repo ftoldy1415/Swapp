@@ -8,7 +8,7 @@ import {
   } from "react-router-dom";
 
 import Login from './Login';
-import mainPage from './mainPage';
+import MainPage from './MainPage';
 
 import Navigation from './Navigation';
 
@@ -63,7 +63,7 @@ import Navigation from './Navigation';
                   <div>
                       <Switch>
                        <Route path="/" component={Login} exact/>
-                       <Route path="/mainPage" component = {mainPage}/>
+                       <Route path="/MainPage" component = {MainPage}/>
                       <Route component={Error}/>
                      </Switch>
                   </div> 
