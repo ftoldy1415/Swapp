@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import './navBar.css';
 import './groups.css';
-//import './styles.css';
+import './styles.css';
 
 
 function GruposProcura(){
@@ -100,7 +100,7 @@ function GruposProcura(){
                 </div>
             </div>
 
-            <div className="content2">
+            <div className="content">
             <table>
                 <thead>
                     <tr>
@@ -108,7 +108,6 @@ function GruposProcura(){
                         <th>Course</th>
                         <th>Description</th>
                         <th>Notify?</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
