@@ -1,5 +1,7 @@
 package semNome.hackathon.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.websocket.ClientEndpoint;
 import java.sql.Date;
@@ -30,17 +32,19 @@ public class Pedido {
 
     @ManyToOne(fetch =FetchType.LAZY)
     @JoinColumn(name = "aluno_num", referencedColumnName = "num")
+    @JsonIgnore
     private Aluno aluno;
 
     public Pedido(){
 
     }
 
-    public Pedido(String turno_orig, String turno_dest, Time hora_pedido, String uc){
+    public Pedido(String turno_orig, String turno_dest, Time hora_pedido, String uc, Date data_pedido){
         this.turno_orig = turno_orig;
         this.turno_dest = turno_dest;
         this.hora_pedido = hora_pedido;
         this.uc = uc;
+        this.data_pedido = data_pedido;
     }
 
     public int getId() {

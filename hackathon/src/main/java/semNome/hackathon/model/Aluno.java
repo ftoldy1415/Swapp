@@ -21,6 +21,7 @@ public class Aluno {
     @Column(name = "num_telemovel")
     private String num_telemovel;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Pedido> pedidos;
 
@@ -31,6 +32,10 @@ public class Aluno {
             joinColumns = @JoinColumn(name = "aluno_num"),
             inverseJoinColumns = @JoinColumn(name = "turno_id"))
     private List<Turno> turnos;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<AnuncioGrupo> anunciosGrupo;
 
     public Aluno(){
 
@@ -90,5 +95,24 @@ public class Aluno {
 
     public void setNum_telemovel(String num_telemovel) {
         this.num_telemovel = num_telemovel;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    public Turno getTurno(String uc){
+        for(Turno t : this.turnos){
+            if(t.getUc().equals(uc)) return t;
+        }
+        return null;
+    }
+
+    public void removeTurno(String uc){
+        this.turnos.removeIf(t -> t.getUc().equals(uc));
     }
 }

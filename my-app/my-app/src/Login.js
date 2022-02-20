@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import { useHistory} from "react-router-dom";
 
+import './navBar.css';
+import './groups.css'
+import './login.css';
 
 function Login(){
     const history = useHistory();
     const [ email , setEmail] = useState('');
     const [ password , setPassword] = useState('');
-
 
     function Login() {
 
@@ -25,9 +27,14 @@ function Login(){
 
         .then(response => response.json())
         .then((data) => {
-            console.log(data.login)
-            let path = '/mainPage';
-            history.push(path);
+            console.log(typeof(data.login));
+            if(data.login === 'true'){
+                let path = '/MainPage';
+                history.push(path);
+            }
+            else{
+                console.log(data.login);
+            }
         })
         .catch(error => console.log(error));
     }
@@ -40,21 +47,28 @@ function Login(){
     }
     */
     
-    return(
-        
-        <div className="inputs">
-        <div>
-            <img src={require("./logo.png")} className="logoLogin" alt = "logo"/>
-            <form>
-                <input className = "caixasTextoWhite" id = "email" type = "email" placeholder='Insira o seu email' name = "email" value={email}          onChange={ (e) => setEmail(e.target.value)}/><br/>
-                <input className = "caixasTextoWhite" id = "password" type = "password" placeholder='Insira a sua password' name = "password" value={password}  onChange={(e) => setPassword(e.target.value)}/>            
-            </form>
+    return(<div className="inputs">
+        <div className="main-body">
+            <div className="wrapper">
+            <img src={require("./logo_preto.png")} className="logo-login" alt = "logo"/>
+                <h1 className="post-title">Welcome!</h1><br></br>
+                <br></br>
+                <div className="input-data">
+                    <input type="text" name = "email" value={email} onChange={ (e) => setEmail(e.target.value)}/><br/>
+                    <div className="underline"></div>
+                    <label>Email</label>
+                </div>
+                <br></br>
+                <div className="input-data">
+                    <input type="password" required name = "password" value={password}  onChange={(e) => setPassword(e.target.value)}/>
+                    <div className="underline"></div>
+                    <label>Password</label>
+                </div>
+                <br></br>
+                <button className="pipi-button center-button" onClick={Login}>Login</button>
+            </div>
         </div>
-
-        <br/>
-        <button onClick={Login}>Login</button>
-    </div>
-    );
+    </div>);
 
 }
 export default Login;

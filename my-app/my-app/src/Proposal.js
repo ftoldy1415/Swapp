@@ -2,6 +2,9 @@ import { useEffect , useState} from "react";
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
 
+import './navBar.css';
+import './proposal.css';
+
 function Proposal(){
     const {uc} = useParams();
 
@@ -22,9 +25,31 @@ function Proposal(){
         console.log(turnos);
     }
 
+
+    async function sendTrade(turnoSend){
+        const info = {
+            turno : turnoSend
+        }
+        await fetch('http://127.0.0.1:8080/efetuaTroca', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(info),
+        });
+        window.location.reload(false);
+
+    }
+
     useEffect( () => {
         getTurnos();
     },[]);
+
+    function newTrade(){
+        let path = '/NewSwap';
+        history.push(path);    
+    }
+
 
     return(
         <div>
@@ -32,35 +57,39 @@ function Proposal(){
                 <nav>
                     <img src={require("./logo.png")}  alt="logo" className="logo"/>
                     <ul className="nav-links">
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Groups</a></li>
-                        <li><a href="">See Swaps</a></li>
-                        <li><a href="">Log Out</a></li>
+                        <li><a href="/MainPage">Home</a></li>
+                        <li><a href="/LookGroup">Looking for Groups</a></li>
+                        <li><a href="/GruposProcura">Find Group</a></li>
+                        <li><a href="/MyProposals">My Swaps</a></li>
+                        <li><a href="/AboutUs">About</a></li>
+                        <li><a href="/">Log Out</a></li>
                     </ul>
                 </nav>
             </div>
         
-            <hr/>
-        
             <div className="content">
-                <h1>Existem as seguintes propostas</h1>
+                <h1 className="proposal-title">Available Offers:</h1>
                 <table>
                     <thead>
                         <tr>
-                            <th>Turno</th>
-                            <th>Horas</th>
-                            <th>Dia da Semana</th>
+                            <th>Shift</th>
+                            <th>Hour</th>
+                            <th>Day</th>
+                            <th>Has Conflict?</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             turnos.map((turno) => (
-                                <tr>
+                                <tr key = {turno.id}>
                                     <td>{turno.turno}</td>
                                     <td>{turno.horario}</td>
                                     <td>{turno.dia_semana}</td>
-                                    <td><button>Confirmar Troca</button></td>
+
+                                    <td>{turno.sobreposicao}</td>
+
+                                    <td><button onClick = {() => {sendTrade(turno.turno)}}>Confirm Swap</button></td>
                                 </tr>
                             ))
                         }
@@ -68,7 +97,8 @@ function Proposal(){
         
                     </tbody>
                 </table>
-                <button>Propor nova troca</button>
+                <br></br>
+                <button onClick={()=> newTrade()}>Propose new Swap</button>
             </div>
         
         </div>

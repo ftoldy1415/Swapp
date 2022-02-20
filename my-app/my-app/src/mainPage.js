@@ -1,14 +1,14 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import {useEffect, useRef, useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 
+import './navBar.css';
+import './styles.css';
 
-function MainPage(){
-
+function MainPage() {
 
     let history = useHistory();
     const [turnos, setTurnos] = useState([]);
-
 
     const getTurnos = async () => {
         const response = await fetch('http://127.0.0.1:8080/getTurnos', {
@@ -21,24 +21,22 @@ function MainPage(){
         setTurnos(turnoss);
     }
 
-    useEffect( () => {
+    useEffect(() => {
         getTurnos();
-    },[]);
+    }, []);
 
-    function sendResponse(cadeira){
+    function sendResponse(cadeira) {
         const info = {
-            uc : cadeira,
+            uc: cadeira,
         };
-
+/*
         fetch('http://127.0.0.1:8080/getTurnos', {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body:
-                JSON.stringify(info),
-            
         });
+    */
         
         let path = `./Proposal/${cadeira}`;
         history.push(path);
@@ -50,25 +48,25 @@ function MainPage(){
             <nav>
                 <img src={require("./logo.png")}  alt="logo" className="logo"/>
                 <ul className="nav-links">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Groups</a></li>
-                    <li><a href="">See Swaps</a></li>
+                    <li><a href="/MainPage">Home</a></li>
+                    <li><a href="/LookGroup">Looking for Groups</a></li>
+                    <li><a href="/GruposProcura">Find Group</a></li>
+                    <li><a href="/MyProposals">My Swaps</a></li>
+                    <li><a href="/AboutUs">About</a></li>
                     <li><a href="/">Log Out</a></li>
                 </ul>
             </nav>
         </div>
 
-        <hr/>
-
         <div className="content">
-            <h1>Trocas Automáticas Disponíveis</h1>
+            <h1 className="proposal-title">Your Courses:</h1>
             <table>
                 <thead>
                     <tr>
-                        <th>UC</th>
-                        <th>Turno</th>
+                        <th>Course</th>
+                        <th>Shift</th>
                         <th>Status</th>
-                        <th>Ações</th>
+                        <th>Settings</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,10 +75,11 @@ function MainPage(){
                             <tr key = {turno.id}>
                                 <td><a href="https://www.uminho.pt/PT/ensino/oferta-educativa/_layouts/15/UMinho.PortalUM.UI/Pages/CatalogoCursoDetail.aspx?itemId=4079&catId=12">{turno.uc}</a></td>
                                 <td>{turno.num_turno}</td><td><p className="status status-waiting">Waiting</p></td>
-                                <td><button onClick={()=>sendResponse(turno.uc)}>Postar Pedido</button></td>
+                                <td><button onClick={()=>sendResponse(turno.uc)}>Try to Swap</button></td>
                             </tr> 
                         ))
                     }
+
                 </tbody>
             </table>
         </div>

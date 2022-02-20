@@ -10,6 +10,11 @@ import {
 import Login from './Login';
 import MainPage from './MainPage';
 import Proposal from './Proposal';
+import MyProposals from './MyProposals';
+import AboutUs from './AboutUs';
+import LookGroup from './LookGroup';
+import NewSwap from "./NewSwap";
+import GruposProcura from "./GruposProcura";
 
 import Navigation from './Navigation';
 
@@ -66,6 +71,12 @@ import Navigation from './Navigation';
                        <Route path="/" component={Login} exact/>
                        <Route path="/MainPage" component = {MainPage}/>
                        <Route path="/Proposal/:uc" component = {Proposal}/>
+                       <Route path="/MyProposals" component = {MyProposals}/>
+                       <Route path="/AboutUs" component = {AboutUs}/>
+                       <Route path="/LookGroup" component = {LookGroup}/>
+                       <Route path="/NewSwap" component= {NewSwap}/>
+                       <Route path="/GruposProcura" component={GruposProcura}/>
+
                       <Route component={Error}/>
                      </Switch>
                   </div> 
