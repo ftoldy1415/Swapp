@@ -2,6 +2,7 @@ package semNome.hackathon.model;
 
 import javax.persistence.*;
 import javax.websocket.ClientEndpoint;
+import java.sql.Date;
 import java.sql.Time;
 
 @Entity
@@ -17,6 +18,9 @@ public class Pedido {
 
     @Column(name = "turno_dest")
     private String turno_dest;
+
+    @Column(name = "data_pedido")
+    private Date data_pedido;
 
     @Column(name = "hora_pedido")
     private Time hora_pedido;
@@ -85,5 +89,13 @@ public class Pedido {
 
     public void setUc(String uc) {
         this.uc = uc;
+    }
+
+    public Date getData_pedido() {
+        return data_pedido;
+    }
+
+    public void setData_pedido(Date data_pedido) {
+        this.data_pedido = data_pedido;
     }
 }

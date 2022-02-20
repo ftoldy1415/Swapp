@@ -19,10 +19,10 @@ public class HackathonApplication {
 		SpringApplication.run(HackathonApplication.class, args);
 	}
 
-	@EventListener(ApplicationReadyEvent.class)
-	public void triggerEmail(){
-		service.sendEmail("brunofilipe377@gmail.com", "vai po crlhes", "ola");
-	}
+	//@EventListener(ApplicationReadyEvent.class)
+	//public void triggerEmail(){
+	//	service.sendEmail("brunofilipe377@gmail.com", "vai po crlhes", "ola");
+	//	}
 
 	@Bean
 	public WebMvcConfigurer configure() {

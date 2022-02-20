@@ -11,13 +11,15 @@ public class Aluno {
 
     @Id
     @Column(name = "num")
-    private String num;
+    private int num;
     @Column(name = "nome")
     private String nome;
     @Column(name = "password")
     private String password;
     @Column(name = "email")
     private String email;
+    @Column(name = "num_telemovel")
+    private String num_telemovel;
 
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Pedido> pedidos;
@@ -30,11 +32,23 @@ public class Aluno {
             inverseJoinColumns = @JoinColumn(name = "turno_id"))
     private List<Turno> turnos;
 
-    public String getNum() {
+    public Aluno(){
+
+    }
+
+    public Aluno(int num, String nome, String password, String email, String num_telemovel){
+        this.num = num;
+        this.nome = nome;
+        this.password = password;
+        this.email = email;
+        this.num_telemovel = num_telemovel;
+    }
+
+    public int getNum() {
         return num;
     }
 
-    public void setNum(String num) {
+    public void setNum(int num) {
         this.num = num;
     }
 
@@ -68,5 +82,13 @@ public class Aluno {
 
     public List<Turno> getTurnos(){
         return this.turnos;
+    }
+
+    public String getNum_telemovel() {
+        return num_telemovel;
+    }
+
+    public void setNum_telemovel(String num_telemovel) {
+        this.num_telemovel = num_telemovel;
     }
 }

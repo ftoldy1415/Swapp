@@ -31,6 +31,13 @@ public class AppController {
         return "olaaaaa";
     }
 
+    @CrossOrigin
+    @GetMapping("/popular_dados")
+    public void popularDados(){
+        this.appService.popularDados();
+    }
+
+    @CrossOrigin
     @GetMapping("/getAlunos")
     public List<Aluno> getAlunos(){
         //return this.alunoRepo.findAll();
@@ -76,10 +83,24 @@ public class AppController {
     }
 
     @CrossOrigin
-    @PostMapping("/efetuaTroca")
-    public void efetuaTroca(@RequestBody Map<String, String> troca){
-        this.appService.possiveisTroca(troca);
+    @PostMapping("/possiveisTrocas")
+    public List<Map<String, String>> possiveisTrocas(@RequestBody Map<String, String> troca){
+        System.out.println("troca = " + troca);
+        List<Map<String, String>> aux = this.appService.possiveisTrocas(troca);
+        System.out.println(aux);
+        return aux;
     }
 
+    @CrossOrigin
+    @PostMapping("/efetuaTroca")
+    public void efetuaTroca(@RequestBody Map<String, String> troca){
+        this.appService.efetuaTroca(troca);
+    }
+
+    @CrossOrigin
+    @PostMapping("/sobreposicao")
+    public String verificaSobreposicao(@RequestBody Map<String, String> turno){
+        return "\"sobreposicao\" : \"" + this.appService.verificaSobreposicao(turno) + "\"";
+    }
 
 }

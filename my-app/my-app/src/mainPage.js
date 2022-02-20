@@ -25,7 +25,24 @@ function MainPage(){
         getTurnos();
     },[]);
 
-    
+    function sendResponse(cadeira){
+        const info = {
+            uc : cadeira,
+        };
+
+        fetch('http://127.0.0.1:8080/getTurnos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:
+                JSON.stringify(info),
+            
+        });
+        
+        let path = `./Proposal/${cadeira}`;
+        history.push(path);
+    }
 
     return(
     <div>
@@ -44,6 +61,7 @@ function MainPage(){
         <hr/>
 
         <div className="content">
+            <h1>Trocas Automáticas Disponíveis</h1>
             <table>
                 <thead>
                     <tr>
@@ -59,7 +77,7 @@ function MainPage(){
                             <tr key = {turno.id}>
                                 <td><a href="https://www.uminho.pt/PT/ensino/oferta-educativa/_layouts/15/UMinho.PortalUM.UI/Pages/CatalogoCursoDetail.aspx?itemId=4079&catId=12">{turno.uc}</a></td>
                                 <td>{turno.num_turno}</td><td><p className="status status-waiting">Waiting</p></td>
-                                <td><button>Postar Pedido</button></td>
+                                <td><button onClick={()=>sendResponse(turno.uc)}>Postar Pedido</button></td>
                             </tr> 
                         ))
                     }

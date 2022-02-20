@@ -9,6 +9,7 @@ import {
 
 import Login from './Login';
 import MainPage from './MainPage';
+import Proposal from './Proposal';
 
 import Navigation from './Navigation';
 
@@ -64,6 +65,7 @@ import Navigation from './Navigation';
                       <Switch>
                        <Route path="/" component={Login} exact/>
                        <Route path="/MainPage" component = {MainPage}/>
+                       <Route path="/Proposal/:uc" component = {Proposal}/>
                       <Route component={Error}/>
                      </Switch>
                   </div> 
